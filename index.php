@@ -10,7 +10,7 @@ $json_object = json_decode($json_string);
 $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
 $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ*/
 $message_txt = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
-//$message_text = mb_strtolower($message_txt);//小文字に変換
+$message_text = mb_strtolower($message_txt);//小文字に変換
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
 //返信メッセージ
@@ -18,12 +18,12 @@ if($message_type != "text") exit;
 $html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_txt."/");
 //要素取得
 $sentenceList = phpQuery::newDocument($html)->find(".example");
-foreach( $sentenceList as $sentence ) {
+/*foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text();    
-    //返信実行
-    sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
-}
+    //返信実行*/
+    sending_messages($accessToken, $replyToken, $message_type, $message_text);
+//}
  ?>
 <?php
 //メッセージの送信
