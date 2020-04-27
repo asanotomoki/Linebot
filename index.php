@@ -1,9 +1,6 @@
-<?php
  <?php
 // phpQueryの読み込み
- require_once("./phpQuery-onefile.php");
-$html = file_get_contents("https://www.ei-navi.jp/dictionary/content/dog/");
-echo phpQuery::newDocument($html)->find(".en")->text();
+require_once("./phpQuery-onefile.php");
 $accessToken = 'DdmNT4QarD6NJOjux4Zk2W7oFhaueH//hEqGiCCFLYkze0hmomf66qmBiK+sXAxHFDtBu/a5GalY+Z510PkygPUa/o4dtszXoZsxJth7xHyg02hxh8cWO1bLlv+Y6/OZa5t4psyLWM3cGfd84QT/UwdB04t89/1O/w1cDnyilFU=';
  
 //ユーザーからのメッセージ取得
@@ -17,16 +14,16 @@ $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッ�
  
 //メッセージタイプが「text」以外のときは何も返さず終了
 if($message_type != "text") exit;
- 
 //返信メッセージ
 //ページ取得 
-$html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_text);
+$html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_text."/");
 //要素取得
 $sentenceList = phpQuery::newDocument($html)->find(".example");
 foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text()."<br />";    
 }
+echo $return_message_text;
  
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
