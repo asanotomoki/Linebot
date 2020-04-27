@@ -12,7 +12,7 @@ $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッ�
 $message_txt = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
 $message_text = mb_strtolower($message_txt);
 //メッセージタイプが「text」以外のときは何も返さず終了
-if($message_type != "text") exit;
+//if($message_type != "text") exit;
 //返信メッセージ
 //ページ取得 
 $html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_text."/");
@@ -22,6 +22,8 @@ foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text();    
 }
+
+//echo  $return_message_text;
  
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
