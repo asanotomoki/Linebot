@@ -9,8 +9,9 @@ $json_object = json_decode($json_string);
 //取得データ
 $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
 $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ*/
-$message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
-//$message_text = mb_strtolower($message_txt);
+$message_txt = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
+$message_text = mb_strtolower($message_txt);
+echo $message_text;
 //メッセージタイプが「text」以外のときは何も返さず終了
 //if($message_type != "text") exit;
 //返信メッセージ
@@ -22,8 +23,6 @@ foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text();    
 }
-
-echo  $return_message_text;
  
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
