@@ -21,10 +21,9 @@ $sentenceList = phpQuery::newDocument($html)->find(".example");
 foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text();    
+    //返信実行
+    sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 }
- 
-//返信実行
-sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
  ?>
 <?php
 //メッセージの送信
