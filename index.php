@@ -23,7 +23,7 @@ foreach( $sentenceList as $sentence ) {
     $return_message_text = $Example_sentence->text();    
 }
 
-//echo  $return_message_text;
+echo  $return_message_text;
  
 //返信実行
 sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
