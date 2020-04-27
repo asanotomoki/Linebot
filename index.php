@@ -9,9 +9,9 @@ $json_object = json_decode($json_string);
 //取得データ
 $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
 $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ*/
-$message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
+$message_txt = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
+$message_text = trim($message_txt);
 //メッセージタイプが「text」以外のときは何も返さず終了
-echo $message_text;
 if($message_type != "text") exit;
 //返信メッセージ
 //ページ取得 
