@@ -6,7 +6,6 @@ $accessToken = 'DdmNT4QarD6NJOjux4Zk2W7oFhaueH//hEqGiCCFLYkze0hmomf66qmBiK+sXAxH
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
- echo "Ok";
 //取得データ
 $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
 $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ*/
