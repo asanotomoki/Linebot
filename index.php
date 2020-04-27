@@ -6,14 +6,14 @@ $accessToken = 'DdmNT4QarD6NJOjux4Zk2W7oFhaueH//hEqGiCCFLYkze0hmomf66qmBiK+sXAxH
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
- 
+ echo "Ok";
 //取得データ
 $replyToken = $json_object->{"events"}[0]->{"replyToken"};        //返信用トークン
 $message_type = $json_object->{"events"}[0]->{"message"}->{"type"};    //メッセージタイプ*/
 $message_text = $json_object->{"events"}[0]->{"message"}->{"text"};    //メッセージ内容
  
 //メッセージタイプが「text」以外のときは何も返さず終了
-if($message_type != "text") exit;
+//if($message_type != "text") exit;
 //返信メッセージ
 //ページ取得 
 $html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_text."/");
