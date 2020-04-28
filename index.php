@@ -22,7 +22,7 @@ foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text();    
     
-    if($return_message_text === null) {
+    if($return_message_text == null) {
          $return_message_text = 'その単語の例文はありません';
     }
     //返信実行
