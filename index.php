@@ -21,9 +21,6 @@ $sentenceList = phpQuery::newDocument($html)->find(".example");
 foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text(); 
-    if( $Example_sentence->text() == null) {
-         $return_message_text = 'その単語の例文はありません';
-    }
     //返信実行
     sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 }
