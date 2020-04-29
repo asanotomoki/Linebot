@@ -22,8 +22,12 @@ foreach( $sentenceList as $sentence ) {
     $Example_sentence = pq($sentence);
     $return_message_text = $Example_sentence->text(); 
     //返信実行
-    sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
 }
+if( $return_message_text==null) {
+     $return_message_text = 'この単語の検索結果はありません';
+}
+sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
+
  ?>
 <?php
 //メッセージの送信
