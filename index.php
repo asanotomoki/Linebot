@@ -18,8 +18,10 @@ if($message_type != "text") exit;
 $html = file_get_contents("https://www.ei-navi.jp/dictionary/content/".$message_text."/");
 //要素取得
 $sentenceList = phpQuery::newDocument($html)->find(".example");
+//例文のない単語の判断
+$check_message = phpQuery::newDocument($html)->find(".example")->text();
     //検索結果がない時の処理
-    if ($sentenceList == null) {
+    if ($check_message == null) {
         $return_message_text = 'この単語の検索結果はありません';
         //返信実行    
         sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
@@ -31,11 +33,6 @@ $sentenceList = phpQuery::newDocument($html)->find(".example");
             sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
         }
     }
-    
-
-
-sending_messages($accessToken, $replyToken, $message_type, $return_message_text);
-
  ?>
 <?php
 //メッセージの送信
